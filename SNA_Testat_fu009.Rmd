@@ -1,0 +1,70 @@
+---
+title: "Testat_fu009"
+subtitle: "VfBStuttgart"
+author: "FabioUlrich"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+
+**igraph-Objekt erstellen (Ego-Netzwerk)**
+
+```{r Netzwerk einlesen, fig.height=6, fig.width=10, message=FALSE, warning=TRUE, paged.print=FALSE}
+
+library(igraph)
+
+# Edge- und Nodelist vorbereiten
+el <- read.csv("https://raw.githubusercontent.com/tkhdm/testatedgelistdrei/main/Testat%20-%20Edgelist-3.csv", header=T, as.is=T, sep = ",")
+
+
+nodes <- read.csv("https://raw.githubusercontent.com/Fabioulrich/TestatSNA/main/SNA_Testat_fu009%20-%20Nodelist.csv", header=T, as.is=T, sep = ",")
+
+edgematrix <-as.matrix(el)
+
+#igraph Objekt erstellen
+VfBStuttgart <- graph_from_data_frame(d=edgematrix, vertices=nodes, directed=T)
+VfBStuttgart
+```
+
+# Netzwerkvisualisierung
+
+```{r Netzwerk visualisieren, fig.height=6, fig.width=10}
+
+plot(VfBStuttgart, 
+		 asp=0,
+     layout=layout_nicely,
+     main="VfBStuttgart",
+     sub="fu009",
+     vertex.color="red",
+     vertex.frame.color=NA,
+     edge.color="grey60",
+     edge.curved=.10,
+     edge.arrow.size=.3)
+     vertex.size=7
+```
+
+
+Codebuch VfB Aufagbe								
+								
+								
+Wert	       meaning							
+edgelist								
+from	       von welchem Verein und aus welchem Land kommt der Spieler ursprünglich und Trikotnummer							
+to 	         Trikot/Rückennummer, ID des Spielers							
+weight	     Transfersumme in 100.000 Euro Schritten, gerundet falls abweichend.							
+season	     transferfenster nur erste Jahreszahl des Fensters als JJJJ verwenden.							
+								
+nodelist								
+id	         Trikotnumer, Vereinsname und Nationalität							
+name	       Spieler-/Vereinsname							
+country	     Land							
+type1	       Spieler 							
+type2	       Verein							
+								
+								
+NA	definiert fehlende Werte, bei der Datenerhebung das Feld einfach leer lassen, R rechnet NAs (missing values) automatisch raus							

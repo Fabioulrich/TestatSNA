@@ -1,0 +1,19 @@
+Codebuch VfB Aufagbe,
+,
+,
+Wert,meaning
+edgelist,
+from,von welchem Verein und aus welchem Land kommt der Spieler ursprünglich und Trikotnummer
+to ,"Trikot/Rückennummer, ID des Spielers"
+weight,"Transfersumme in 100.000 Euro Schritten, gerundet falls abweichend."
+season,transferfenster nur erste Jahreszahl des Fensters als JJJJ verwenden.
+,
+nodelist,
+id,"Trikotnumer, Vereinsname und Nationalität"
+name,Spieler-/Vereinsname
+country,Land
+type1,Spieler 
+type2,Verein
+,
+,
+NA,"definiert fehlende Werte, bei der Datenerhebung das Feld einfach leer lassen, R rechnet NAs (missing values) automatisch raus"
